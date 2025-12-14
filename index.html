@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sobre romántico animado ❤️</title>
+<style>
+:root{
+  --rojo:#8b0000;
+  --rojo-claro:#b11226;
+}
+
+body{
+  margin:0;
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:radial-gradient(circle at top,#3a1c1c,#120707);
+  font-family:'Segoe UI',sans-serif;
+}
+
+.scene{
+  width:420px; /* más ancho el sobre */
+  perspective:1200px;
+}
+
+.envelope{
+  width:100%;
+  min-height:220px;
+  position:relative;
+  transform-style:preserve-3d;
+  transition:transform 1s ease;
+}
+
+.scene.open .envelope{
+  transform:rotateY(180deg);
+}
+
+.face{
+  position:absolute;
+  width:100%;
+  min-height:220px;
+  backface-visibility:hidden;
+  border-radius:12px;
+  box-shadow:0 15px 35px rgba(0,0,0,.5);
+}
+
+.front{
+  background:var(--rojo);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  font-size:22px;
+}
+
+.back{
+  background:var(--rojo);
+  transform:rotateY(180deg);
+  overflow:visible;
+}
+
+/* TAPA */
+.flap{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:120px;
+  background:var(--rojo-claro);
+  clip-path:polygon(0 0,100% 0,50% 100%);
+  transform-origin:top;
+  transition:transform 1s ease 0.6s;
+  z-index:3;
+}
+
+.scene.open .flap{
+  transform:rotateX(180deg);
+}
+
+/* CARTA FLEXIBLE */
+.letter{
+  position:relative;
+  margin:60px auto 25px;
+  width:96%; /* carta casi de lado a lado */
+  max-height:70vh;
+  overflow-y:auto;
+  background:#1e1e1e;
+  border-radius:10px;
+  padding:22px 24px; /* más espacio lateral */
+  box-sizing:border-box;
+  color:#f3cfcf;
+  text-align:center;
+  transform:translateY(120px);
+  opacity:0;
+  transition:transform 1s ease 1.2s, opacity 1s ease 1.2s;
+}
+
+/* scroll bonito */
+.letter::-webkit-scrollbar{
+  width:6px;
+}
+.letter::-webkit-scrollbar-thumb{
+  background:#ff9aa2;
+  border-radius:10px;
+}
+
+.scene.open .letter{
+  transform:translateY(0);
+  opacity:1;
+}
+
+.letter h3{
+  color:#ff9aa2;
+  margin:8px 0 12px;
+}
+
+.letter p{
+  line-height:1.6;
+  font-size:15px;
+}
+
+.tap{
+  position:absolute;
+  bottom:20px;
+  width:100%;
+  text-align:center;
+  color:#f5c6c6;
+  font-size:14px;
+  transition:opacity .6s ease;
+}
+
+.scene.open + .tap{
+  opacity:0;
+  pointer-events:none;
+}
+</style>
+</head>
+<body>
+
+<div class="scene" onclick="abrir()">
+  <div class="envelope">
+
+    <!-- FRENTE -->
+    <div class="face front">Para Vero 💌</div>
+
+    <!-- ATRÁS -->
+    <div class="face back">
+      <div class="flap"></div>
+      <div class="letter">
+        <h3>Para ti ❤️</h3>
+        <p>
+          Hola, mi amorcito 💕<br>
+          te amo demasiado ❤️.<br><br>
+
+          Gracias por todo, eres lo mejor que me ha pasado ✨.<br><br>
+
+          Te seguiré demostrando que conmigo nunca perderás el tiempo,
+          porque yo lo daré todo por ti 💪❤️.<br><br>
+
+          Mi meta contigo es ser la mejor pareja del mundo 🌍,<br>
+          amarnos, ser solo nosotros dos 💑,<br>
+          que nada ni nadie más importe.<br><br>
+
+          Prometo amarte toda la vida 💍,<br>
+          pasar contigo incluso los momentos difíciles
+          y hacer que todo se sienta más fácil 🤍.<br><br>
+
+          Todo lo que quiero es que tú sientas lo mismo por mí 💖✨
+        </p>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="tap">Toca el sobre</div>
+
+<script>
+let abierto=false;
+function abrir(){
+  if(abierto) return;
+  document.querySelector('.scene').classList.add('open');
+  abierto=true;
+}
+</script>
+
+</body>
+</html>
